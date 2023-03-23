@@ -50,7 +50,10 @@
       <router-view></router-view>
     </v-content>
   </v-app>
-  
+  <v-main>
+  <router-view></router-view>
+  </v-main>
+
 
 </template>
 

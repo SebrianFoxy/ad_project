@@ -7,7 +7,7 @@
                     <v-list-item v-for="order in orders" :key="order.id">
                         <template>
                             <v-list-item-action>
-                                <v-checkbox :input-value="order.done" color="primary"></v-checkbox>
+                                <v-checkbox :input-value="order.done" color="primary" @click="markDone(order)"></v-checkbox>
                             </v-list-item-action>
                         </template>
                         <v-list-item-title>{{ order.name }}</v-list-item-title>
@@ -37,6 +37,12 @@ export default {
                     done: true
                 }
             ]
+        }
+    },
+    methods: {
+        markDone(order) {
+            order.done = !order.done
+            console.log(order.done)
         }
     }
 }

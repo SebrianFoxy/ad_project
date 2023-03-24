@@ -2,7 +2,6 @@
     <v-container>
         <v-row justify="center">
             <v-col cols="12" sm="8" lg="6">
-
                 <v-card class="elevetion-12">
                     <v-toolbar dark color="primary">
                         <v-toolbar-title>Registration</v-toolbar-title>
@@ -14,12 +13,14 @@
                             </v-text-field>
                             <v-text-field prepend-icon="mdi-lock" name="password" label="Password" type="password"
                                 v-model="password" :rules="passwordRules"></v-text-field>
+                            <v-text-field prepend-icon="mdi-lock" name="confirm-password" label="Confirm Password"
+                                type="password" v-model="confirmPassword" :rules="confirmPasswordRules"></v-text-field>
                         </v-form>
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn color="primary" @click="onSubmit" :disabled="!valid">
-                            Registration
+                            Create Account
                         </v-btn>
                     </v-card-actions>
                 </v-card>
@@ -33,6 +34,7 @@ export default {
         return {
             email: "",
             password: "",
+            confirmPassword: "",
             valid: false,
             emailRules: [
                 v => !!v || 'E-mail is required',
@@ -41,6 +43,10 @@ export default {
             passwordRules: [
                 v => !!v || 'Password is required',
                 v => (v && v.length >= 6) || 'Password must be more or equel than 6 characters'
+            ],
+            confirmPasswordRules: [
+                v => !!v || 'Password is required',
+                v => v === this.password || 'Password should match'
             ]
         }
     },

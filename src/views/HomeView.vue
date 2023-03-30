@@ -29,7 +29,7 @@
             <v-spacer></v-spacer>
             <v-btn text :to="'/ad/' + ad.id">Open</v-btn>
             <v-btn raised color="primary">
-              Buy
+              <buy-ad-modal :id="id"></buy-ad-modal>
             </v-btn>
           </v-card-actions>
         </v-card>

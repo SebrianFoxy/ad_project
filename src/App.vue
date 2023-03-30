@@ -13,7 +13,7 @@
       </v-list-item>
       <v-divider></v-divider>
       <v-list dense>
-        <v-list-item v-for="link in links" :key="link.title" :to="link.url">
+        <v-list-item v-for="link in links" :key="link.title" :to="link.url" >
           <template v-slot:prepend>
             <v-icon :icon="link.icon"></v-icon>
           </template>
@@ -30,9 +30,23 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn v-for="link in links" :key="link.title" :to="link.url">
-          <v-icon start :icon="link.icon"></v-icon>
-          {{ link.title }}
+        <v-btn
+        v-for="link in links"
+        :key="link.title"
+        :to="link.url"
+        >
+        <v-icon
+        start
+        :icon="link.icon"
+        ></v-icon>
+        {{ link.title }}
+        </v-btn>
+        <v-btn @click="onLogout" v-if="isUserLoggedIn">
+        <v-icon
+        start
+        icon="mdi-exit-to-app"
+        ></v-icon>
+        Logout
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
@@ -90,7 +104,12 @@ export default {
   methods: {
     closeError() {
       this.$store.dispatch('clearError')
+    },
+    onLogout() {
+      this.$store.dispatch('logoutUser')
+      this.$router.push("/")
     }
+
   }
 
 }

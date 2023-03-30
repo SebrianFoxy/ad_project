@@ -29,6 +29,7 @@
     </v-container>
 </template>
 <script>
+
 export default {
     data() {
         return {
@@ -55,6 +56,7 @@ export default {
             return this.$store.getters.loading
         }
     },
+    
     methods: {
         onSubmit() {
             if (this.$refs.form.validate()) {
@@ -63,8 +65,16 @@ export default {
                     password: this.password
                 }
                 this.$store.dispatch('registerUser', user)
+                .then(() => {
+                    this.$router.push("/")
+                })
+                .catch((err) => {
+                    console.log(err.message)
+                })
+
             }
-        }
+        },
+        
     }
 } 
 </script>

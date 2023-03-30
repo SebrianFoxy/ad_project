@@ -54,7 +54,9 @@ export default {
 			})
 		},
 		myAds(state) {
-			return state.ads
+			return state.ads.filter(ad => {
+				return ad.userId == getters.user.id
+		})
 	},
 	adById(state) {
 		return id => {

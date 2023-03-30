@@ -28,9 +28,9 @@
                     <p>{{ ad.desc }}</p>
                     </v-card-text>
                     <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <modal-dialog :ad="ad"></modal-dialog>
-                    <v-btn class="success">Buy</v-btn>
+                        <v-spacer></v-spacer>
+                        <modal-dialog :ad="ad" v-if="isOwner"></modal-dialog>
+                        <v-btn class="success">Buy</v-btn>
                     </v-card-actions>	
                 </v-card>
             </v-col>

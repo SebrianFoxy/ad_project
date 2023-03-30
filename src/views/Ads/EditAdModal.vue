@@ -37,7 +37,9 @@
 export default {
     data() {
         return {
-            modal: false
+            modal: false,
+            editedTitle: "",
+            editedDesc: ""
         }
     }
 }

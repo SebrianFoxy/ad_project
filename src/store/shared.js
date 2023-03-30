@@ -16,15 +16,20 @@ export default {
 
     }, 
 	actions: {
-        setLoading ({commit}, payload) {
-            commit('setLoading', payload)
-        },
-	    setError ({commit}, payload) {
-		    commit('setError', payload)
-        },
-        clearError ({commit}) {
-		    commit('clearError')
-	    },
+        registerUser({commit},{email, password}){
+            commit('clearError')
+            commit('setLoading', true)
+            fb.auth().createUserWithEmailAndPassword(email,password).then(response => {
+                commit('setUser', new User(response.user.uid))
+                commit('setLoading', false)
+            }).catch( error => {
+                commit('setLoading', false)
+                commit('setError', error.message)
+                throw error
+            })
+        }
+
+    },
 	getters: {
         loading (state) {
 		    return state.loading
@@ -34,5 +39,5 @@ export default {
 	}
 
     },
-    }
 }
+
